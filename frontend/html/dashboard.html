@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SportVault</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/dashboard" class="navbar-brand">SportVault</a>
+        <ul class="navbar-nav">
+            <li><a href="/dashboard" class="active">Dashboard</a></li>
+            <li><a href="/equipment">Equipment</a></li>
+            <li><a href="/booking">Bookings</a></li>
+            <li class="admin-only"><a href="/maintenance">Maintenance</a></li>
+            <li class="admin-only"><a href="/reports">Reports</a></li>
+        </ul>
+        <div class="navbar-user">
+            <span id="user-name"></span>
+            <span id="user-role" style="font-size: 0.8rem; opacity: 0.8;"></span>
+            <button id="logout-btn" class="btn btn-sm" style="background: transparent; border: 1px solid white; color: white;">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Welcome, <span id="welcome-name"></span>!</h1>
+            <p>Sports Equipment & Venue Management Dashboard</p>
+        </div>
+
+        <div id="alert-container"></div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card navy">
+                <div class="stat-value" id="total-equipment">0</div>
+                <div class="stat-label">Total Equipment</div>
+            </div>
+            <div class="stat-card blue">
+                <div class="stat-value" id="available-equipment">0</div>
+                <div class="stat-label">Available Equipment</div>
+            </div>
+            <div class="stat-card navy">
+                <div class="stat-value" id="total-bookings">0</div>
+                <div class="stat-label">Total Bookings</div>
+            </div>
+            <div class="stat-card blue">
+                <div class="stat-value" id="total-students">0</div>
+                <div class="stat-label">Total Students</div>
+            </div>
+            <div class="stat-card navy">
+                <div class="stat-value" id="pending-maintenance">0</div>
+                <div class="stat-label">Pending Maintenance</div>
+            </div>
+        </div>
+
+        <!-- Admin Only: Student ID Management -->
+        <div class="admin-only card">
+            <div class="admin-section">
+                <h2>Student ID Management</h2>
+                <p>Create and manage student IDs for registration</p>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Create New Student ID</h3>
+                </div>
+                <form id="create-student-id-form" class="form-row">
+                    <div class="form-group" style="flex: 1;">
+                        <input type="text" class="form-control" id="new-student-id" placeholder="Enter Student ID (e.g., STU001)" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Student IDs List</h3>
+                </div>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Registered</th>
+                                <th>Student Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="student-ids-tbody">
+                            <tr>
+                                <td colspan="4" class="empty-state">Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Quick Actions</h3>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="/equipment" class="btn btn-primary">View Equipment</a>
+                <a href="/booking" class="btn btn-secondary">Book Venue</a>
+                <a href="/maintenance" class="btn btn-secondary">View Maintenance</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

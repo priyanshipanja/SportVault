@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - SportVault</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/dashboard" class="navbar-brand">SportVault</a>
+        <ul class="navbar-nav">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/equipment">Equipment</a></li>
+            <li><a href="/booking">Bookings</a></li>
+            <li><a href="/maintenance">Maintenance</a></li>
+            <li><a href="/reports" class="active">Reports</a></li>
+        </ul>
+        <div class="navbar-user">
+            <span id="user-name"></span>
+            <span id="user-role" style="font-size: 0.8rem; opacity: 0.8;"></span>
+            <button id="logout-btn" class="btn btn-sm" style="background: transparent; border: 1px solid white; color: white;">Logout</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Historical Reports</h1>
+            <p>View and download historical data for all activities</p>
+        </div>
+
+        <div id="alert-container"></div>
+
+        <!-- Summary Stats -->
+        <div class="stats-grid">
+            <div class="stat-card navy">
+                <div class="stat-value" id="total-issues">0</div>
+                <div class="stat-label">Total Equipment Issues</div>
+            </div>
+            <div class="stat-card blue">
+                <div class="stat-value" id="total-bookings-count">0</div>
+                <div class="stat-label">Total Bookings</div>
+            </div>
+            <div class="stat-card navy">
+                <div class="stat-value" id="total-maintenance-cost">₹0</div>
+                <div class="stat-label">Total Maintenance Cost</div>
+            </div>
+            <div class="stat-card blue">
+                <div class="stat-value" id="active-students">0</div>
+                <div class="stat-label">Active Students</div>
+            </div>
+        </div>
+
+        <!-- Equipment Issues History -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Equipment Issue History</h3>
+                <div>
+                    <input type="file" id="upload-equipment-issues" accept=".csv" style="display: none;" onchange="uploadEquipmentIssuesCSV(this)">
+                    <button class="btn btn-secondary" onclick="document.getElementById('upload-equipment-issues').click()">Upload CSV</button>
+                    <button class="btn btn-success" onclick="generateSyntheticEquipmentIssues()">Generate Synthetic Data</button>
+                    <button class="btn btn-primary" onclick="downloadEquipmentIssuesCSV()">Download CSV</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Equipment</th>
+                            <th>Category</th>
+                            <th>Issue Date</th>
+                            <th>Return Date</th>
+                            <th>Days Used</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="equipment-issues-tbody">
+                        <tr>
+                            <td colspan="7" class="empty-state">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Booking History -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Booking History</h3>
+                <div>
+                    <input type="file" id="upload-bookings" accept=".csv" style="display: none;" onchange="uploadBookingsCSV(this)">
+                    <button class="btn btn-secondary" onclick="document.getElementById('upload-bookings').click()">Upload CSV</button>
+                    <button class="btn btn-success" onclick="generateSyntheticBookings()">Generate Synthetic Data</button>
+                    <button class="btn btn-primary" onclick="downloadBookingsCSV()">Download CSV</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Venue</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Purpose</th>
+                            <th>Status</th>
+                            <th>Booked On</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookings-history-tbody">
+                        <tr>
+                            <td colspan="7" class="empty-state">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Maintenance History -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Maintenance History</h3>
+                <div>
+                    <input type="file" id="upload-maintenance" accept=".csv" style="display: none;" onchange="uploadMaintenanceCSV(this)">
+                    <button class="btn btn-secondary" onclick="document.getElementById('upload-maintenance').click()">Upload CSV</button>
+                    <button class="btn btn-success" onclick="generateSyntheticMaintenance()">Generate Synthetic Data</button>
+                    <button class="btn btn-primary" onclick="downloadMaintenanceCSV()">Download CSV</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Equipment</th>
+                            <th>Issue Description</th>
+                            <th>Reported By</th>
+                            <th>Reported Date</th>
+                            <th>Completed Date</th>
+                            <th>Repair Cost (₹)</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="maintenance-history-tbody">
+                        <tr>
+                            <td colspan="7" class="empty-state">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/reports.js"></script>
+</body>
+</html>
