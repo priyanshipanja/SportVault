@@ -149,4 +149,4 @@ sportsvault/
 
 ## License
 
-MIT © [Priyanshi Panja](https://github.com/priyanshipanja)
+© [Priyanshi Panja](https://github.com/priyanshipanja)
